@@ -1,0 +1,32 @@
+{
+    "name": "Focus Extension",
+    "version": "0.1.0",
+    "description": "Track amount of time spent on YouTube videos for liesure and label YouTube timestamps for learning",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["https://*.youtube.com/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.youtube.com/*"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "images/target.png"
+        ],
+        "matches": ["https://*.youtube.com/*"]
+      }
+    ],
+    "action": {
+      "default_icon": {
+     
+      },
+      "default_title": "Focus Extension",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
