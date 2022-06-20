@@ -7,16 +7,16 @@ body{
 
 .title{
     margin-top: -30px;
-    font-size: xxx-large;
+    font-size: 4rem;
     font-family: 'Bungee Shade', cursive;
-    text-emphasis-color: white;
+    
 }
 
 .container{
     margin-top: -20px;
 
     color: white;
-    padding: 50px;
+    padding: 30px;
     background-color:rgb(48, 125, 226) ;
     border: 10px double white;
     width: 200px;
