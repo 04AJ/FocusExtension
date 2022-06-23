@@ -53,41 +53,56 @@
             e.stopPropagation();
             }
 
-        // creating form
-        const form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("action", "submit.php");
-
-        
-        // adding input to YouTube DOM
-        const inputBtn = document.createElement("input");
-        inputBtn.className = "ytp-chrome-top-buttons" + "input-btn";
-        inputBtn.type = "text";
-        inputBtn.title = "Caption this timstamp";
-    
-        youtubeTopControls = document.getElementsByClassName("ytp-chrome-top-buttons")[0];
-        
-        youtubeTopControls.prepend(inputBtn);
-
-
-        const currentTime = youtubePlayer.currentTime;
  
-        // getting currentVideo title
-        let videoTitle = document.title.split(" - YouTube")[0];
+        const inputExists = document.getElementsByClassName("input-btn")[0]; 
+     // adding button to YouTube DOM
+        if(!inputExists){
+     
+        const input = document.createElement("input");
+        input.className = "ytp-chrome-top-buttons" + "input-btn";
+        input.type = "text";
+        input.title = "Caption this timstamp. Click enter so submit.";
+
+        const submit = document.createElement("button");
+        submit.className = "ytp-chrome-top-buttons" + "submit-btn";
+        submit.type = "button";
+        submit.innerHTML = "Submit";
+        submit.onclick = function (){
+            var inputVal  = input.value;
+           
+        
+            const currentTime = youtubePlayer.currentTime;
+            let videoTitle = document.title.split(" - YouTube")[0];
+    
+           
+            const newBookmark = {
+                time: currentTime,
+                title: videoTitle,
+                desc: "Bookmark at " + getTime(currentTime),
+                cap: inputVal
+    
+            };
+    
+            currentVideoBookmarks.push(newBookmark);
+            currentVideoBookmarks.sort((a, b) => a.time - b.time);
+            // saving to local storage
+        localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+        input.remove();
+        submit.remove();
+
+        }
+
+        youtubeTopControls = document.getElementsByClassName("ytp-chrome-top-buttons")[0];
+        youtubeTopControls.prepend(input);
+
+        
+        youtubeLeftControls =  document.getElementsByClassName("ytp-left-controls")[0];
+        youtubeLeftControls.appendChild(submit);
+        }
 
        
-        const newBookmark = {
-            time: currentTime,
-            title: videoTitle,
-            desc: "Bookmark at " + getTime(currentTime),
-            cap: inputBtn.value
-
-        };
-
-        currentVideoBookmarks.push(newBookmark);
-        currentVideoBookmarks.sort((a, b) => a.time - b.time);
-        // saving to local storage
-    localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+        
+      
 
 }
 
