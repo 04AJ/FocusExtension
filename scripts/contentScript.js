@@ -36,7 +36,6 @@
             bookmarkBtn.title = "Click to save current timestamp";
 
             youtubeLeftControls =  document.getElementsByClassName("ytp-right-controls")[0];
-            youtubePlayer = document.getElementsByClassName("video-stream")[0];
             
             youtubeLeftControls.prepend(bookmarkBtn);
             bookmarkBtn.addEventListener("click", addNewBookmarkEventHandler);
@@ -54,50 +53,72 @@
             }
 
  
+        youtubePlayer = document.getElementsByClassName("video-stream")[0];
+        youtubePlayer.pause();
         const inputExists = document.getElementsByClassName("input-btn")[0]; 
      // adding button to YouTube DOM
         if(!inputExists){
+
+        const bg = document.createElement("div");
+        bg.style.backgroundColor = "black";
+        bg.style.marginTop = "80%";
+        bg.style.padding = "10px";
+        bg.style.display = "flex";
+        bg.style.justifyContent = "center";
+        bg.style.border = "3px solid rgb(9, 196, 209)";
+
      
         const input = document.createElement("input");
-        input.className = "ytp-chrome-top-buttons" + "input-btn";
+        input.className = "ytp-chrome-top-buttons " + "input-btn";
         input.type = "text";
-        input.title = "Caption this timstamp. Click enter so submit.";
+        input.title = "Caption this timestamp. Click the button to submit.";
+        input.placeholder = "Caption this timestamp";
+        input.style.height = "2rem"; 
+        input.style.marginTop = "5px";
+        input.style.width = "250px";
+        input.style.fontSize = "2rem";
 
-        const submit = document.createElement("button");
-        submit.className = "ytp-chrome-top-buttons" + "submit-btn";
-        submit.type = "button";
-        submit.innerHTML = "Submit";
+        const submit = document.createElement("img");
+        submit.className = "ytp-chrome-top-buttons " + "submit-btn";
+        submit.src = chrome.runtime.getURL("images/submit2.png");
+        submit.title = "Submit";
+        submit.style.height = "3.5rem"; 
+        submit.style.width= "3.5rem"; 
         submit.onclick = function (){
             var inputVal  = input.value;
-           
+            var currentTime = Math.round(youtubePlayer.currentTime);
+            var videoTitle = document.title.split(" - YouTube")[0];
         
-            const currentTime = youtubePlayer.currentTime;
-            let videoTitle = document.title.split(" - YouTube")[0];
-    
            
-            const newBookmark = {
+            var newBookmark = {
                 time: currentTime,
                 title: videoTitle,
-                desc: "Bookmark at " + getTime(currentTime),
+                desc: "Bookmark at " + Math.floor(currentTime/60) + ":" + currentTime%60,
+                link: "https://youtu.be/" + currentVideo + "?t=" + currentTime,
                 cap: inputVal
     
             };
-    
+
+        
             currentVideoBookmarks.push(newBookmark);
             currentVideoBookmarks.sort((a, b) => a.time - b.time);
             // saving to local storage
-        localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+        localStorage.setItem(videoTitle, JSON.stringify(currentVideoBookmarks));
         input.remove();
         submit.remove();
+        bg.remove();
+        youtubePlayer.play();
 
         }
 
+        bg.appendChild(input);
+        bg.appendChild(submit);
         youtubeTopControls = document.getElementsByClassName("ytp-chrome-top-buttons")[0];
-        youtubeTopControls.prepend(input);
-
+        // youtubeTopControls.prepend(submit);
+        // youtubeTopControls.prepend(input);
+        youtubeTopControls.appendChild(bg);
         
-        youtubeLeftControls =  document.getElementsByClassName("ytp-left-controls")[0];
-        youtubeLeftControls.appendChild(submit);
+        
         }
 
        
@@ -114,11 +135,3 @@
     newVideoLoaded();
 
 })();
-
-
-const getTime = t => {
-    var date = new Date(0);
-    date.setSeconds(t);
-
-    return date.toISOString().substr(11,8);
-};
