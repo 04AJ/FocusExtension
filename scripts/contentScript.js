@@ -2,6 +2,7 @@
     let youtubeLeftControls, youtubePlayer;
     let currentVideo = "";
     let currentVideoBookmarks = [];
+    let videoList = [];
 
 
     // listening for background message
@@ -10,20 +11,30 @@
 
         if(type === "NEW"){
             currentVideo = videoId;
-            newVideoLoaded();
+            
+
+            videoList = [];
+            let localVids = JSON.parse(localStorage.getItem("videoList"));
+            if(localVids){
+                videoList = localVids;
+            }
+   
+            videoList.push(currentVideo);
+           
+       newVideoLoaded();
         }
     });
 
     const newVideoLoaded = () => {
 
         currentVideoBookmarks = [];
+
         let localBookmarks = JSON.parse(localStorage.getItem(currentVideo));
         if(localBookmarks){
             currentVideoBookmarks = localBookmarks;
 
 
         }
-        
 
 
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0]; 
@@ -61,7 +72,6 @@
 
         const bg = document.createElement("div");
         bg.style.backgroundColor = "black";
-        bg.style.marginTop = "80%";
         bg.style.padding = "10px";
         bg.style.display = "flex";
         bg.style.justifyContent = "center";
@@ -77,6 +87,7 @@
         input.style.marginTop = "5px";
         input.style.width = "250px";
         input.style.fontSize = "2rem";
+        input.style.fontFamily = "Helvetica !important";
 
         const submit = document.createElement("img");
         submit.className = "ytp-chrome-top-buttons " + "submit-btn";
@@ -84,6 +95,7 @@
         submit.title = "Submit";
         submit.style.height = "3.5rem"; 
         submit.style.width= "3.5rem"; 
+
         submit.onclick = function (){
             var inputVal  = input.value;
             var currentTime = Math.round(youtubePlayer.currentTime);
@@ -102,12 +114,20 @@
         
             currentVideoBookmarks.push(newBookmark);
             currentVideoBookmarks.sort((a, b) => a.time - b.time);
+
+            
+
             // saving to local storage
-        localStorage.setItem(videoTitle, JSON.stringify(currentVideoBookmarks));
+        localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+
+        // saving video IDs
+        localStorage.setItem("videoList", JSON.stringify(videoList));
         input.remove();
         submit.remove();
         bg.remove();
         youtubePlayer.play();
+
+
 
         }
 
@@ -127,9 +147,9 @@
 
 }
 
-    window.removeEventListener('keydown', stopPropagation, true);
 
     
+   window.removeEventListener('keydown', stopPropagation, true);
 
     
     newVideoLoaded();

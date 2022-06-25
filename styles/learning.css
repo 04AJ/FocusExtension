@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  min-width: 220px;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+.title {
+  margin-top: -30px;
+  font-size: 4rem;
+  font-family: "Bungee Shade", cursive;
+  color: white;
+}
+
+.container {
+  margin-top: -20px;
+
+  color: white;
+  padding: 30px;
+  background-color: rgb(9, 196, 209);
+  border: 10px double white;
+  border-radius: 20px;
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
