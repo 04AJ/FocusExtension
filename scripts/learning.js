@@ -1,20 +1,26 @@
-let videoList = JSON.parse(localStorage.getItem("videoList"));
-console.log(videoList);
-const list = document.getElementsByClassName("list");
+var http = require('http');
+const {finalVidList} = require('./contentScript');
 
+alert(finalVidList);
+
+let videoList = JSON.parse(localStorage.getItem("videoList"));
+const list = document.getElementById("list");
+let listItems = "";
 videoList.forEach(key => {
 
-    let listItems = "";
-    if(JSON.parse(localStorage).getItem(key)){
+   
         listItems += `
         <li>
-            <a target = '_blank'> 
             ${key} 
 
-            </a>
         </li>
     `
-    }
+
 });
+console.log(listItems)
 
 list.innerHTML = listItems;
+
+
+
+

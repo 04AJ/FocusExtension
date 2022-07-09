@@ -5,7 +5,7 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
         // creating unique id for each vid
         const queryParameters = tab.url.split("?")[1];
         const urlParameters = new URLSearchParams(queryParameters);
-        console.log(urlParameters);
+
 
         // sending message to contentScript 
         chrome.tabs.sendMessage(tabId, {

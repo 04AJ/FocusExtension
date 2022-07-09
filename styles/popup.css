@@ -6,6 +6,13 @@ body {
   background-color: black;
 }
 
+span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
 .title {
   margin-top: -30px;
   font-size: 4rem;
@@ -20,7 +27,6 @@ body {
   padding: 30px;
   background-color: rgb(9, 196, 209);
   border: 10px double white;
-  border-radius: 20px;
   width: 200px;
   height: 150px;
   display: flex;

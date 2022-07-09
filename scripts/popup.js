@@ -1,7 +1,8 @@
+
 import { getCurrentTab } from "scripts/utils.js";
 
 document.addEventListener("DOMContentLoaded", async () =>{
-    const activeTab = await getActiveTabURL();
+    const activeTab = await getCurrentTab();
     const queryParameters = activeTab.url.split("?")[1];
     const urlParameters = new URLSearchParams(queryParameters);
 
@@ -16,3 +17,18 @@ document.addEventListener("DOMContentLoaded", async () =>{
     }
 
 });
+
+// chrome.runtime.onMessage.addListener(
+
+//     function(request,sender,sendResponse){
+
+//         const{type, videoId} = request;
+//         alert("hi")
+//         sendResponse()
+//         localStorage.clear();
+
+
+//     }
+// );
+
+

@@ -1,0 +1,45 @@
+<!-- saves specific url for that time stamp and allows user to write caption -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/styles/leisure.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Leisure</title>
+  </head>
+  <body>
+    <span>
+      <div class="title">Leisure</div>
+      <div class="container">
+        <h2 class="head">How long do you want to watch YouTube?</h2>
+        <h2 class="time"></h2>
+
+        <div class="field">
+          <input class="input" type="text" />
+          <h3>minutes</h3>
+          <button onclick="myfunction()" class="btn" type="submit">
+            Submit
+          </button>
+        </div>
+
+        <button style="display: none" class="stop">STOP</button>
+      </div>
+    </span>
+
+    <script src="/scripts/leisure.js"></script>
+  </body>
+</html>

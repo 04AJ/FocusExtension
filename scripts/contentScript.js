@@ -4,7 +4,6 @@
     let currentVideoBookmarks = [];
     let videoList = [];
 
-
     // listening for background message
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const{type, value, videoId} = obj;
@@ -69,7 +68,7 @@
         const inputExists = document.getElementsByClassName("input-btn")[0]; 
      // adding button to YouTube DOM
         if(!inputExists){
-
+    
         const bg = document.createElement("div");
         bg.style.backgroundColor = "black";
         bg.style.padding = "10px";
@@ -96,6 +95,7 @@
         submit.style.height = "3.5rem"; 
         submit.style.width= "3.5rem"; 
 
+
         submit.onclick = function (){
             var inputVal  = input.value;
             var currentTime = Math.round(youtubePlayer.currentTime);
@@ -117,15 +117,24 @@
 
             
 
-            // saving to local storage
-        localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+                        // saving to local storage
+                    localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+                
 
-        // saving video IDs
-        localStorage.setItem("videoList", JSON.stringify(videoList));
-        input.remove();
-        submit.remove();
-        bg.remove();
-        youtubePlayer.play();
+                    // saving video IDs
+                    localStorage.setItem("videoList", JSON.stringify(videoList));
+
+
+                    input.remove();
+                    submit.remove();
+                    bg.remove();
+                    youtubePlayer.play();
+            // sending message to popup 
+            //    chrome.tabs.sendMessage(currentVideo, {
+            //     type: "NEW",
+            //     videoId: "Hello"
+            // });
+
 
 
 
@@ -142,8 +151,6 @@
         }
 
        
-        
-      
 
 }
 
@@ -155,3 +162,4 @@
     newVideoLoaded();
 
 })();
+
