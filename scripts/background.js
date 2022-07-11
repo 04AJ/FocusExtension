@@ -1,4 +1,8 @@
 
+chrome.action.onClicked.addListener(() => {
+    chrome.tabs.create({url: "popup.html"});
+  });
+ 
 // finding active tab and checking if it's a youtube vid
 chrome.tabs.onUpdated.addListener((tabId, tab) => {
     if(tab.url && tab.url.includes("youtube.com/watch")){
@@ -17,3 +21,4 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
 
     
 })
+

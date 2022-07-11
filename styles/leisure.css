@@ -44,15 +44,15 @@ input {
   background-color: rgb(9, 196, 209);
 }
 
-.stop {
+.end {
   font-family: "Georgia";
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
   height: 3rem;
   margin: 1rem;
 }
 
-.stop:hover {
+.end:hover {
   background-color: rgb(9, 196, 209);
 }
 
