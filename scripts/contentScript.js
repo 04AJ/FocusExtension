@@ -1,5 +1,4 @@
 
-
 (() => {
 
  
@@ -16,30 +15,35 @@
         if(type === "NEW"){
             currentVideo = videoId;
             
-
             videoList = [];
-            let localVids = JSON.parse(localStorage.getItem("videoList"));
-            if(localVids){
-                videoList = localVids;
-            }
-   
+            chrome.storage.sync.get(['videoList'], function (result) {
+                let localVids = result.videoList;
+                if(localVids){
+                    videoList = localVids;
+                }
+                   });
+            
+          
             videoList.push(currentVideo);
            
        newVideoLoaded();
         }
     });
 
+
     const newVideoLoaded = () => {
 
         currentVideoBookmarks = [];
-
-        let localBookmarks = JSON.parse(localStorage.getItem(currentVideo));
-        if(localBookmarks){
-            currentVideoBookmarks = localBookmarks;
-
-
-        }
-
+        chrome.storage.sync.get(['currentVideo'], function (result) {
+            let localBookmarks = result.currentVideo;
+            if(localBookmarks){
+                currentVideoBookmarks = localBookmarks;
+    
+    
+            }    
+        });
+        
+       
 
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0]; 
      // adding button to YouTube DOM
@@ -122,12 +126,13 @@
 
             
 
-                        // saving to local storage
-                    localStorage.setItem(currentVideo, JSON.stringify(currentVideoBookmarks));
+                    // saving to chrome storage
+                    chrome.storage.sync.set({currentVideo: currentVideoBookmarks});
+
                 
 
                     // saving video IDs
-                    localStorage.setItem("videoList", JSON.stringify(videoList));
+                    chrome.storage.sync.set({"videoList": videoList});
 
 
                     input.remove();
