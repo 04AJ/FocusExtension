@@ -81,7 +81,3 @@ async function startTimer(duration, display) {
     }, 1000);
 }
 
-
-chrome.browserAction.setBadgeText({
-    "text": "10"
-});

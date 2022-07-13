@@ -1,4 +1,9 @@
+
+
 (() => {
+
+ 
+
     let youtubeLeftControls, youtubePlayer;
     let currentVideo = "";
     let currentVideoBookmarks = [];
