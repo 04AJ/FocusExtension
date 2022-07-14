@@ -21,10 +21,11 @@
                 if(localVids){
                     videoList = localVids;
                 }
+                videoList.push(currentVideo);
                    });
             
           
-            videoList.push(currentVideo);
+          
            
        newVideoLoaded();
         }
@@ -127,7 +128,9 @@
             
 
                     // saving to chrome storage
-                    chrome.storage.sync.set({currentVideo: currentVideoBookmarks});
+                    chrome.storage.sync.set({'currentVideo': currentVideoBookmarks}, function () {
+                            console.log("caption sent!");
+                    });
 
                 
 

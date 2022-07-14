@@ -15,12 +15,20 @@ chrome.storage.sync.get(['videoList'], function (result) {
     `
 
     });
-    console.log(listItems)
+  
 
     list.innerHTML = listItems;
 
 
 });
+
+const btn = document.getElementsByClassName("btn")[0];
+btn.addEventListener("click", ()=> {
+    win = window.open('https://youtube.com/', '_blank'); 
+
+});
+
+
 
 
 
