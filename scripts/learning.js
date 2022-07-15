@@ -1,26 +1,26 @@
 
-chrome.storage.sync.get(['videoList'], function (result) {
-    let videoList = result.videoList;
+// chrome.storage.sync.get(['videoList'], function (result) {
+//     let videoList = result.videoList;
 
-    const list = document.getElementById("list");
-    let listItems = "";
-    videoList.forEach(key => {
+//     const list = document.getElementById("list");
+//     let listItems = "";
+//     videoList.forEach(key => {
 
 
-    listItems += `
-    <li>
-        ${key} 
+//     listItems += `
+//     <li>
+//         ${key} 
 
-    </li>
-    `
+//     </li>
+//     `
 
-    });
+//     });
   
 
-    list.innerHTML = listItems;
+//     list.innerHTML = listItems;
 
 
-});
+// });
 
 const btn = document.getElementsByClassName("btn")[0];
 btn.addEventListener("click", ()=> {
@@ -28,8 +28,15 @@ btn.addEventListener("click", ()=> {
 
 });
 
+function getValue(callback) {
+    chrome.storage.sync.get("a3", callback);
+  }
 
 
-
-
-
+ 
+  getValue(function (value) {
+    let text = value;
+    console.log(JSON.parse(text));
+ 
+    
+  }); 

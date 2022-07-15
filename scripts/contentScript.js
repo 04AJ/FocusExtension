@@ -105,9 +105,22 @@
         submit.style.height = "3.5rem"; 
         submit.style.width= "3.5rem"; 
 
+        bg.appendChild(input);
+        bg.appendChild(submit);
+        youtubeTopControls = document.getElementsByClassName("ytp-chrome-top-buttons")[0];
+        // youtubeTopControls.prepend(submit);
+        // youtubeTopControls.prepend(input);
+        youtubeTopControls.appendChild(bg);
+        
 
         submit.onclick = function (){
             var inputVal  = input.value;
+            input.remove();
+            submit.remove();
+            bg.remove();
+            youtubePlayer.play();
+
+           
             var currentTime = Math.round(youtubePlayer.currentTime);
             var videoTitle = document.title.split(" - YouTube")[0];
         
@@ -121,14 +134,17 @@
     
             };
 
+            
+
+
         
-            currentVideoBookmarks.push(newBookmark);
-            currentVideoBookmarks.sort((a, b) => a.time - b.time);
+            // currentVideoBookmarks.push(newBookmark);
+            // currentVideoBookmarks.sort((a, b) => a.time - b.time);
 
             
 
                     // saving to chrome storage
-                    chrome.storage.sync.set({'currentVideo': currentVideoBookmarks}, function () {
+                    chrome.storage.sync.set({currentVideo : currentVideoBookmarks}, function () {
                             console.log("caption sent!");
                     });
 
@@ -137,29 +153,27 @@
                     // saving video IDs
                     chrome.storage.sync.set({"videoList": videoList});
 
+                    let obj = {};
+                    let var1 = "a3";
+                    let array = [{time: "4:54",
+                    title: "testing",
+                    desc: "plz work"
+                }, {time: "4:55",
+                title: "testing1",
+                desc: "plz work1"
+            }];
+                    obj[var1] =  JSON.stringify(array);
+                    chrome.storage.sync.set(obj);
 
-                    input.remove();
-                    submit.remove();
-                    bg.remove();
-                    youtubePlayer.play();
-            // sending message to popup 
-            //    chrome.tabs.sendMessage(currentVideo, {
-            //     type: "NEW",
-            //     videoId: "Hello"
-            // });
+
+           
 
 
 
 
         }
 
-        bg.appendChild(input);
-        bg.appendChild(submit);
-        youtubeTopControls = document.getElementsByClassName("ytp-chrome-top-buttons")[0];
-        // youtubeTopControls.prepend(submit);
-        // youtubeTopControls.prepend(input);
-        youtubeTopControls.appendChild(bg);
-        
+
         
         }
 

@@ -23,7 +23,7 @@ particlesJS('particles-js',
         }
       },
       "color": {
-        "value": "#ffffff"
+        "value": "#09C4D1"
       },
       "shape": {
         "type": "circle",
@@ -69,7 +69,7 @@ particlesJS('particles-js',
       },
       "move": {
         "enable": true,
-        "speed": 6,
+        "speed": 5,
         "direction": "none",
         "random": false,
         "straight": false,
@@ -109,10 +109,10 @@ particlesJS('particles-js',
           "speed": 3
         },
         "repulse": {
-          "distance": 200
+          "distance": 120
         },
         "push": {
-          "particles_nb": 4
+          "particles_nb": 8
         },
         "remove": {
           "particles_nb": 2

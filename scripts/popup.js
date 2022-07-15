@@ -1,5 +1,4 @@
 
-
 // import { getCurrentTab } from "utils.js";
 
 // document.addEventListener("DOMContentLoaded", async () =>{

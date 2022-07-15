@@ -1,6 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  overflow: hidden;
 }
 #particles-js {
   position: absolute;
@@ -39,6 +40,8 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
 }
 
 a {
@@ -60,4 +63,9 @@ a:hover {
   color: black;
   border-width: 5px;
   border-color: black;
+}
+
+.container:hover {
+  transition: ease-in-out 1s;
+  opacity: 1;
 }
