@@ -1,33 +1,48 @@
 
 (() => {
 
- 
+
 
     let youtubeLeftControls, youtubePlayer;
     let currentVideo = "";
-    let currentVideoBookmarks = [];
+    let currentVideoBookmarks = []
     let videoList = [];
 
     // listening for background message
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const{type, value, videoId} = obj;
 
+        // FIX BUG FIRST VIDEO WON'T WORK
         if(type === "NEW"){
             currentVideo = videoId;
-            
             videoList = [];
-            chrome.storage.sync.get(['videoList'], function (result) {
+            chrome.storage.sync.get('videoList', function (result) {
                 let localVids = result.videoList;
+               
                 if(localVids){
                     videoList = localVids;
+
+                    let repeat = false;
+                    videoList.forEach(key => {
+                        if(key === currentVideo){
+                            repeat = true;
+                        }
+                    })
+
+                    if(!repeat){
+                        videoList.push(currentVideo);
+                    }
+                    
                 }
-                videoList.push(currentVideo);
-                   });
-            
+                
+         
+
+            });
+
           
           
            
-       newVideoLoaded();
+            newVideoLoaded();
         }
     });
 
@@ -35,7 +50,7 @@
     const newVideoLoaded = () => {
 
         currentVideoBookmarks = [];
-        chrome.storage.sync.get(['currentVideo'], function (result) {
+        chrome.storage.sync.get('currentVideo', function (result) {
             let localBookmarks = result.currentVideo;
             if(localBookmarks){
                 currentVideoBookmarks = localBookmarks;
@@ -80,9 +95,10 @@
         if(!inputExists){
     
         const bg = document.createElement("div");
-        bg.style.backgroundColor = "black";
+        bg.style.backgroundColor = "#28282b";
         bg.style.padding = "10px";
         bg.style.display = "flex";
+        bg.style.borderRadius = "1rem";
         bg.style.justifyContent = "center";
         bg.style.border = "3px solid rgb(9, 196, 209)";
 
@@ -125,6 +141,7 @@
             var videoTitle = document.title.split(" - YouTube")[0];
         
            
+
             var newBookmark = {
                 time: currentTime,
                 title: videoTitle,
@@ -136,46 +153,40 @@
 
             
 
-
         
-            // currentVideoBookmarks.push(newBookmark);
-            // currentVideoBookmarks.sort((a, b) => a.time - b.time);
 
-            
+        // NEED TO ADD CALLBACK - test with alert
+        function update(callback){
+            currentVideoBookmarks.push(newBookmark);
+            currentVideoBookmarks.sort((a, b) => a.time - b.time);
+            callback(currentVideoBookmarks);
+        }
+         
 
-                    // saving to chrome storage
-                    chrome.storage.sync.set({currentVideo : currentVideoBookmarks}, function () {
-                            console.log("caption sent!");
-                    });
+        function setStorage(list){
+            let obj = {};
+            // DON'T NEED TO CONVERT TO JSON STRING CHROME STORAGE ACCEPTS OBJECT ARRAYS
+            obj[currentVideo] = list;
 
-                
-
-                    // saving video IDs
-                    chrome.storage.sync.set({"videoList": videoList});
-
-                    let obj = {};
-                    let var1 = "a3";
-                    let array = [{time: "4:54",
-                    title: "testing",
-                    desc: "plz work"
-                }, {time: "4:55",
-                title: "testing1",
-                desc: "plz work1"
-            }];
-                    obj[var1] =  JSON.stringify(array);
-                    chrome.storage.sync.set(obj);
+            chrome.storage.sync.set(obj, function () {
+                });
 
 
-           
+            // saving video IDs
+            chrome.storage.sync.set({"videoList": videoList});
+    
+        }
+         
+        update(setStorage);
 
 
-
+    
 
         }
 
 
         
-        }
+    }
 
        
 

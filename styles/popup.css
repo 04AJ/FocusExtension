@@ -7,7 +7,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: black;
+  background: #28282b;
 }
 .main {
   position: absolute;
@@ -60,9 +60,9 @@ a {
 }
 
 a:hover {
-  color: black;
+  color: #28282b;
   border-width: 5px;
-  border-color: black;
+  border-color: #28282b;
 }
 
 .container:hover {
