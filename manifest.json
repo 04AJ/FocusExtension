@@ -24,7 +24,8 @@
           "images/target.png",
           "images/bookmark.png",
           "images/submit.png",
-          "images/submit2.png"
+          "images/submit2.png",
+          "images/delete.png"
         ],
         "matches": ["https://*.youtube.com/*"]
       }

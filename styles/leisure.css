@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 10px;
   font-family: "Poiret One", cursive;
-  background-color: rgb(9, 196, 209);
+  background-color: #04a366;
   overflow: hidden;
   animation: fadeInAnimation ease 1s;
   animation-iteration-count: 1;
@@ -31,7 +31,7 @@ span {
 }
 
 .title {
-  color: #28282b;
+  color: white;
   margin-top: -30px;
   font-size: 3.2rem;
   height: min-content;
