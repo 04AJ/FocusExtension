@@ -1,3 +1,10 @@
+document.addEventListener('visibilitychange', function (event) {
+  if (document.hidden) {
+     
+  } else {
+      location.reload();
+  }
+});
 const btn = document.getElementsByClassName("btn")[0];
 btn.addEventListener("click", ()=> {
     win = window.open('https://youtube.com/', '_blank'); 
@@ -13,13 +20,12 @@ btn.addEventListener("click", ()=> {
         }
           // ADD REMOVE FUNCTION
         function delBtn (btn, id, index, vidList){
-          btn.addEventListener("click", ()=>{
+          btn.addEventListener("dblclick", ()=>{
             location.reload();
             chrome.storage.sync.remove(id), function(){
-              vidList.splice(index, 1);
-              chrome.storage.sync.set({"videoList": vidList});
-              
             };
+            vidList.splice(index, 1);
+            chrome.storage.sync.set({"videoList": vidList});
             
           });
         }
@@ -27,6 +33,7 @@ btn.addEventListener("click", ()=> {
 
 chrome.storage.sync.get(['videoList'], function (result) {
     let videoList = result.videoList;
+    console.log(videoList);
 
     const ui = document.getElementById("list");
     let listItems = "";
@@ -39,7 +46,7 @@ chrome.storage.sync.get(['videoList'], function (result) {
             var list = lists[i];
             var arr = result[list];
             var src = chrome.runtime.getURL("images/delete.png");
-            listItems += `<img class = "delBtn${i}" style = "position: absolute; left: 1vw" src="${src}"> <h1 class = "vidTitle" style = "margin-top: 1.5rem" >` + arr[0].title + "</h1>";
+            listItems += `<img class = "delBtn${i}" style = "position: absolute; left: 1vw;" src="${src}"> <h1 class = "vidTitle" style = "margin-top: 1.5rem" >` + arr[0].title + "</h1>";
             var videoId = lists[i];
             listItems += `<iframe style = "margin-bottom: 1rem" width="560" height="315" src="https://www.youtube.com/embed/` + videoId +  `" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
             arr.forEach(obj => {
@@ -63,8 +70,8 @@ chrome.storage.sync.get(['videoList'], function (result) {
         
         
 
-        for(let j = 0; j<videoList.length; j++){
-          findBtn(j, videoList[j], videoList);
+        for(let j = 0; j<lists.length; j++){
+          findBtn(j, lists[j], lists);
         }
       
    
