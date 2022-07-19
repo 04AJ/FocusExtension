@@ -19,8 +19,7 @@ body {
   }
 }
 
-span {
-  position: absolute;
+.main {
   left: 50%;
   right: 50%;
   height: 100vh;
@@ -30,11 +29,27 @@ span {
   justify-content: center;
 }
 
+.ml6 {
+  z-index: 10;
+  position: relative;
+  font-size: 3.5em;
+}
+
+.ml6 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml6 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
 .title {
   color: white;
-  margin-top: -30px;
-  font-size: 3.2rem;
-  height: min-content;
   font-family: "Bungee Shade", cursive;
 }
 
@@ -78,7 +93,8 @@ input {
 }
 
 .container {
-  margin-top: -20px;
+  z-index: 100;
+  margin-top: -5rem;
   color: white;
   background-color: #28282b;
   border: 10px double white;

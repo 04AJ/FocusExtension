@@ -1,3 +1,21 @@
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml6 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml6 .letter',
+    translateY: ["0.5em", 0],
+    translateZ: 0,  
+    duration: 4000,
+    delay: (el, i) => 500 * i
+  }).add({
+    targets: '.ml6',
+    opacity: 0,
+    duration: 1500,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
 
 // new window var
 let win;
