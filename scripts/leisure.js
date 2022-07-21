@@ -35,6 +35,7 @@ const display = document.getElementsByClassName("time")[0];
 const end = document.getElementsByClassName("end")[0];
 
 const submit = document.getElementsByClassName("btn")[0];
+const note = document.getElementsByClassName("note")[0];
 
 
 
@@ -49,6 +50,8 @@ submit.addEventListener("click", ()=> {
    
     end.style.display = "block";
     display.style.display = "block";
+
+    note.innerHTML = "View the extension badge (top right corner) to keep track of your time";
     
 
 
