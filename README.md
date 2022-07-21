@@ -7,7 +7,7 @@ Extension Popup
 
 <img width="479" alt="popup" src="https://user-images.githubusercontent.com/85972796/180276763-80a83c07-985b-4d52-a255-5afc08454c93.png">
 
-This extension adds a button at the bottom of every YouTube video so that the user can bookmark and caption important time stamps.
+Extension adds a button at the bottom of every YouTube video so that the user can bookmark and caption important time stamps.
 
 <img width="469" alt="learning" src="https://user-images.githubusercontent.com/85972796/180276845-0abd3fc9-d607-4b88-bf7c-d2cabf857d45.png">
 
