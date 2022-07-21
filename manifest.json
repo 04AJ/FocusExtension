@@ -20,7 +20,10 @@
           "images/bookmark.png",
           "images/submit.png",
           "images/submit2.png",
-          "images/delete.png"
+          "images/delete.png",
+          "images/Github_white.png",
+          "images/Gmail_white.png",
+          "images/LinkedIN_white.png"
         ],
         "matches": ["https://*.youtube.com/*"]
       }

@@ -44,7 +44,7 @@ body {
   transition: opacity 0.2s ease-in-out;
 }
 
-a {
+.btn {
   color: white;
   background-color: #28282b;
   text-decoration: none;
@@ -71,10 +71,21 @@ a:hover {
   opacity: 1;
 }
 
-.btn1:hover {
+.btn.one:hover {
   background-color: #04a366;
 }
 
-.btn2:hover {
+.btn.two:hover {
   background-color: #5353bd;
+}
+
+.footer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  bottom: 1rem;
+  width: 100%;
+  color: white;
+  z-index: 20;
 }
