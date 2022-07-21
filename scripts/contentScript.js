@@ -128,62 +128,7 @@
         // youtubeTopControls.prepend(input);
         youtubeTopControls.appendChild(bg);
 
-        document.addEventListener("keyup", function(event) {
-            if (event.code === 'Enter') {
-                var inputVal  = input.value;
-            input.remove();
-            submit.remove();
-            bg.remove();
-            youtubePlayer.play();
-
-           
-            var currentTime = Math.round(youtubePlayer.currentTime);
-            var videoTitle = document.title.split(" - YouTube")[0];
-        
-           
-
-            var newBookmark = {
-                time: currentTime,
-                title: videoTitle,
-                desc: "Bookmark at " + Math.floor(currentTime/60) + ":" + currentTime%60,
-                link: "https://youtu.be/" + currentVideo + "?t=" + currentTime,
-                cap: inputVal
-    
-            };
-
-            
-
-        
-
-        // NEED TO ADD CALLBACK - test with alert
-        function update(callback){
-            currentVideoBookmarks.push(newBookmark);
-            currentVideoBookmarks.sort((a, b) => a.time - b.time);
-            callback(currentVideoBookmarks);
-        }
-         
-
-        function setStorage(list){
-            let obj = {};
-            // DON'T NEED TO CONVERT TO JSON STRING CHROME STORAGE ACCEPTS OBJECT ARRAYS
-            obj[currentVideo] = list;
-
-            chrome.storage.sync.set(obj, function () {
-                });
-
-
-            // saving video IDs
-            chrome.storage.sync.set({"videoList": videoList});
-    
-        }
-         
-        update(setStorage);
-
-
-            }
-        });
-
-        submit.onclick = function (){
+           submit.onclick = function (){
             var inputVal  = input.value;
             input.remove();
             submit.remove();
