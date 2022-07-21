@@ -5,9 +5,9 @@ textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='let
 anime.timeline({loop: true})
   .add({
     targets: '.ml6 .letter',
-    translateY: ["0.5em", 0],
+    translateY: ["2em", 0],
     translateZ: 0,  
-    duration: 4000,
+    duration: 2000,
     delay: (el, i) => 500 * i
   }).add({
     targets: '.ml6',
@@ -69,7 +69,10 @@ submit.addEventListener("click", ()=> {
 end.addEventListener("click", ()=>{
     win.close();
     window.close();
-
+     chrome.action.setBadgeText({
+            "text": ""
+        });
+        
 
 });
 
@@ -90,9 +93,21 @@ async function startTimer(duration, display) {
             win.close();
         }
 
-        chrome.browserAction.setBadgeText({
+        chrome.action.setBadgeText({
             "text": (minutes).toString()
         });
+        
+
+        if(minutes > 10){
+            chrome.action.setBadgeBackgroundColor(
+                {color: "green"}
+            );
+        } else{
+            chrome.action.setBadgeBackgroundColor(
+                {color: "red"}
+            ); 
+        }
+      
 
 
     

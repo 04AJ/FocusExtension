@@ -4,11 +4,6 @@
     "description": "Track amount of time spent on YouTube videos for liesure and label YouTube timestamps for learning",
     "permissions": ["storage", "tabs", "input", "activeTab"],
     "host_permissions": ["https://*.youtube.com/*"],
-   "browser_action":{
-    "default_icon": "images/target.png",
-    "default_title": "Focus Extension"
-    
-    },
     "background": {
       "service_worker": "scripts/background.js"
     },
@@ -31,8 +26,8 @@
       }
     ],
     "action": {
-      "default_icon": "images/target.png"
-      
+      "default_icon": "images/target.png",
+      "default_title": "Focus Extension" 
     },
     "icons":{
       "16": "images/target.png"
