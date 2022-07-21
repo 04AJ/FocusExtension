@@ -2,6 +2,12 @@
 Chrome extension meant to enhance productivity on YouTube and curb bad online habits.
 ## Installation
 Pending review from Chrome Web Store
+----------------------------------------
+Local Installation:
+1. Download Zip
+2. Visit chrome://extensions/ and turn on "Developer mode"
+3. Click "Load unpacked" button and navivigate to the folder you downloaded from GitHub
+
 ## Usage 
 Extension Popup
 
