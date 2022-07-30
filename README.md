@@ -1,7 +1,8 @@
 # FocusExtension
 Chrome extension meant to enhance productivity on YouTube and curb bad online habits.
 ## Installation
-Pending review from Chrome Web Store
+"Add to Chrome" via 
+https://chrome.google.com/webstore/detail/focus-extension/nfoabbopgdemcjalkjijkfklhemlglli?hl=en&authuser=0
 </br>
 *Local Installation:*
 1. Download Zip
